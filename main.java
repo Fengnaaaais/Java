@@ -6,20 +6,35 @@ public class Program {
 
     Scanner in = new Scanner(System.in);
 
-    System.out.print("Сумма вклада: ");
-    int num = in.nextInt();
-    double procent = 1;
-    if (num < 100) {
-      procent += 0.5;
+    System.out.print("Введите первое число: ");
+    int num1 = in.nextInt();
+
+
+    System.out.print("Введите второе число: ");
+    int num2 = in.nextInt();
+
+    System.out.print("Введите номер операции: 1.Сложение  2.Вычитание  3.Умножение: ");
+    int opeartion = in.nextInt();
+
+    int res = 0;
+
+    switch (opeartion) 
+    {
+        case 1:
+            res = num1 + num2;
+            break;
+        case 2:
+            res = num1 - num2;
+            break;
+        case 3:
+            res = num1 * num2;
+            break;
+        default:
+            System.out.println("Операция не определена\n");
+            break;
     }
-    else if (num >= 100 && num <= 200) {
-      procent += 0.7;
-    }
-    else {
-      procent += 0.10;
-    }
-    num += procent;
-    System.out.printf("%d", num);
+    
+    System.out.printf("Результат операций: %d\n", res);
 
     in.close();
   }
