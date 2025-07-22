@@ -10,9 +10,11 @@ public class Program {
 
         System.out.print("Введите срок вклада в месяцах: ");
         int month = in.nextInt();
+        int i = 1;
 
-        for (int i = 0; i < month; i++) {
+        while (i <= month) {
             sum *= 1.07;
+            i++;
         }
         System.out.printf("После %d месяцев сумма вклада составит %f", month, sum);
     }
