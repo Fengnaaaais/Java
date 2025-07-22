@@ -1,10 +1,19 @@
+import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
-        for (int i = 1; i < 10; i++) {
-            for (int j = 1; j < 9; j++) {
-                System.out.printf("%d\t", i * j);
+        Scanner in = new Scanner(System.in);
+        boolean isActive = true;
+        while (isActive == true) {
+            System.out.print("Введите первое число: ");
+            int num1 = in.nextInt();
+            System.out.print("Введите второе число: ");
+            int num2 = in.nextInt();
+            System.out.printf("%d * %d = %d\n", num1, num2, num1 * num2);
+            System.out.print("Хотите продолжить(1 - да): ");
+            if (in.nextInt() != 1) {
+                isActive = false;
             }
-            System.out.println();
         }
+        in.close();
     }
 }
