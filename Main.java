@@ -4,19 +4,18 @@ public class Main {
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
 
-    double temp;
-    double newTemp;
-    String unit;
-    
-    System.out.print("Enter the temprerature: ");
-    temp = in.nextDouble();
+    String day;
 
-    System.out.print("Convert to Celsius or Farhenheit? (C or F): ");
-    unit = in.next().toUpperCase();
+    System.out.print("Enter the day of the week: ");
+    day = in.nextLine();
 
-    newTemp = (unit.equals("C")) ? (temp - 32) * 5 / 9 : (temp * 9 / 5) + 32;
-
-    System.out.printf("%.1f° %s \n", newTemp, unit);
+    switch (day) {
+      case "Monday", "Tuesday", "Wednesday", "Thursday", "Firday" ->
+          System.out.println("It is weekday :)")
+      case "Saturday", "Sunday" -> 
+          System.out.prinln("It is weekend (:")
+      default -> System.out.printf("%s is not a day of week", day);
+    }
 
     in.close();
   }
