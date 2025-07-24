@@ -4,41 +4,38 @@ public class Main {
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
 
-    double weight;
-    double newWeight;
-    int choise;
+    // is pass or fail
+    System.out.print("Enter your score: ");
+    int score = in.nextInt();
 
-    System.out.println("Weight conversion program!");
-    System.out.println("1: Conver lbs to kgs");
-    System.out.println("2: Conver kgs to lgs");
+    String passOrFail = (score >= 60) ? "PASS" : "FAIL";
 
-    System.out.print("Choose an option: ");
-    choise = in.nextInt();
+    System.out.println(passOrFail);
 
-    switch (choise) {
+    // is number odd or even
+    System.out.print("Enter any number: ");
+    int number = in.nextInt();
 
-      case 1:
-        System.out.print("Enter the weight in lbs: ");
-        weight = in.nextDouble();
+    String evenOrOdd = (number % 2 == 0) ? "EVEN" : "ODD";
 
-        newWeight = weight * 0.453592;
+    System.out.printf("Your number is - %s\n", evenOrOdd);
 
-        System.out.printf("The new weight in kgs is: %.2f", newWeight);
-        break;
 
-      case 2:
-        System.out.print("Enter the weight in kgs: ");
-        weight = in.nextDouble();
-        
-        newWeight = weight * 2.20462;
+    // Is a.m. or p.m.
+    System.out.print("Enter your hours: ");
+    int hours = in.nextInt();
 
-        System.out.printf("The new weight in lbs is: %.2f", newWeight);
-        break;
+    String timeOfDay = (hours < 12) ? "A.M." : "P.M.";
 
-      default:
-        System.out.println("Enter correct value!");
-        break;
-    }
+    System.out.println(timeOfDay);
+
+
+    System.out.print("Enter a income: ");
+    int income = in.nextInt();
+
+    double taxRate = (income >= 40000) ? 0.25 : 0.15;
+  
+    System.out.printf("tax rate with income %d is %.2f\n", income, taxRate);
 
     in.close();
   }
