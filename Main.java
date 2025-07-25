@@ -1,23 +1,29 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+      Scanner in = new Scanner(System.in);
 
-      String[] fruits = {
-        "apple",
-        "orange",
-        "banana",
-        "watermelon"
-      };
+      String[] foods;
+      int size;
 
-      // int numOfFruits = fruits.length; return how many elemnts in array
-      // Arrays.sort(fruits); sort by alphabit
-      // Arrays.fill(fruits, "pineapple"); // set pineapple to all of elements in array
-      for (String fruit : fruits) {
-        System.out.println(fruit);
+      System.out.print("What # of food do you want?: ");
+      size = in.nextInt();
+      in.nextLine();
+
+      foods = new String[size];
+
+      for (int i = 0; i < foods.length; i++) {
+        System.out.print("Enter a food: ");
+        foods[i] = in.nextLine();
       }
 
-    }
+      for (String food : foods) {
+        System.out.println(food);
+      }
 
+      in.close();
+    }
 }
 
