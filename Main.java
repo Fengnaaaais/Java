@@ -1,87 +1,81 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
-  static Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Random random = new Random();
 
-  public static void main(String[] args) {
+        System.out.print("Enter the # of dice to roll: ");
+        int numOfDice = in.nextInt();
+        int total = 0;
 
-    double balance = 0;
-    boolean isRunning = true;
-    int choice;
+        if (numOfDice > 0) {
+            for (int i = 0; i < numOfDice; i++) {
+                int roll = random.nextInt(6) + 1;  // [0..5] + 1 = [1..6]
+                printDie(roll);
+                System.out.printf("You rolled: %d\n", roll);
+                total += roll;
+            }
+            System.out.printf("Total: %d\n", total);
+        } else {
+            System.out.println("# of dice must be greater than 0");
+        }
 
-
-    while (isRunning) {
-      System.out.println("*****************");
-      System.out.println("BANKING PROGRAMM!");
-      System.out.println("*****************");
-      System.out.println("1. Show balance");
-      System.out.println("2. Deposit");
-      System.out.println("3. Withdraw");
-      System.out.println("4. Exit");
-      System.out.println("*****************");
-
-      System.out.print("Enter your choice (1, 2, 3, 4): ");
-      choice = in.nextInt();
-
-
-      switch (choice) {
-        case 1 -> showBalance(balance);
-        case 2 -> balance += deposit();
-        case 3 -> balance -= withdraw(balance);
-        case 4 -> isRunning = false;
-        default -> System.out.println("Invalid choice!");
-      }
-
+        in.close();
     }
 
-    System.out.println("**************************");
-    System.out.println("Thank you! Have a nice day!");
-    System.out.println("**************************");
+    static void printDie(int roll) {
+        String[] dices = {
+            """
+                 -------
+                |       |
+                |   ●   |
+                |       |
+                 -------
+            """,
+            """
+                 -------
+                | ●     |
+                |       |
+                |     ● |
+                 -------
+            """,
+            """
+                 -------
+                | ●     |
+                |   ●   |
+                |     ● |
+                 -------
+            """,
+            """
+                 -------
+                | ●   ● |
+                |       |
+                | ●   ● |
+                 -------
+            """,
+            """
+                 -------
+                | ●   ● |
+                |   ●   |
+                | ●   ● |
+                 -------
+            """,
+            """
+                 -------
+                | ●   ● |
+                | ●   ● |
+                | ●   ● |
+                 -------
+            """
+        };
 
-    in.close();
-     
-  }
-
-  static void showBalance(double balance) {
-    System.out.println("*****************");
-    System.out.printf("$%.2f\n", balance);
-  }
-
-  static double deposit() {
-    double amount;
-
-    System.out.print("Enter the amount to be deposited: ");
-    amount = in.nextDouble();
-    
-    if (amount < 0) {
-      System.out.println("Amount can't be negative!");
-      return 0;
+        if (roll >= 1 && roll <= 6) {
+            System.out.println(dices[roll - 1]);
+        } else {
+            System.out.println("Invalid die value: " + roll);
+        }
     }
-    else {
-      return amount;
-    } 
-  }
-
-  static double withdraw(double balance) {
-    double amount;
-
-    System.out.print("Enter amount to be withdrawn: ");
-    amount = in.nextDouble();
-
-    if (amount > balance) {
-      System.out.println("INSUFICCIEND FUNDS");
-      return 0;
-    }
-    else if (amount < 0) {
-      System.out.println("Amount can't be negative!");
-      return 0;
-    }
-    else {
-      return amount;
-    }
-
-  }
-
 }
-
 
