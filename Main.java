@@ -1,20 +1,87 @@
+import java.util.Scanner;
+
 public class Main {
+  static Scanner in = new Scanner(System.in);
+
   public static void main(String[] args) {
 
-    System.out.println(bakePizza("flat bread"));
-    System.out.println(bakePizza("flat bread", "mozzarella"));
-    System.out.println(bakePizza("flat bread", "mozzarella", "pepperonni"));
+    double balance = 0;
+    boolean isRunning = true;
+    int choice;
+
+
+    while (isRunning) {
+      System.out.println("*****************");
+      System.out.println("BANKING PROGRAMM!");
+      System.out.println("*****************");
+      System.out.println("1. Show balance");
+      System.out.println("2. Deposit");
+      System.out.println("3. Withdraw");
+      System.out.println("4. Exit");
+      System.out.println("*****************");
+
+      System.out.print("Enter your choice (1, 2, 3, 4): ");
+      choice = in.nextInt();
+
+
+      switch (choice) {
+        case 1 -> showBalance(balance);
+        case 2 -> balance += deposit();
+        case 3 -> balance -= withdraw(balance);
+        case 4 -> isRunning = false;
+        default -> System.out.println("Invalid choice!");
+      }
+
+    }
+
+    System.out.println("**************************");
+    System.out.println("Thank you! Have a nice day!");
+    System.out.println("**************************");
+
+    in.close();
+     
+  }
+
+  static void showBalance(double balance) {
+    System.out.println("*****************");
+    System.out.printf("$%.2f\n", balance);
+  }
+
+  static double deposit() {
+    double amount;
+
+    System.out.print("Enter the amount to be deposited: ");
+    amount = in.nextDouble();
+    
+    if (amount < 0) {
+      System.out.println("Amount can't be negative!");
+      return 0;
+    }
+    else {
+      return amount;
+    } 
+  }
+
+  static double withdraw(double balance) {
+    double amount;
+
+    System.out.print("Enter amount to be withdrawn: ");
+    amount = in.nextDouble();
+
+    if (amount > balance) {
+      System.out.println("INSUFICCIEND FUNDS");
+      return 0;
+    }
+    else if (amount < 0) {
+      System.out.println("Amount can't be negative!");
+      return 0;
+    }
+    else {
+      return amount;
+    }
 
   }
-  static String bakePizza(String bread) {
-    return bread + " pizza";
-  }
-  static String bakePizza(String bread, String cheese) {
-    return cheese + " " + bread + " pizza";
-  }
-  static String bakePizza(String bread, String cheese, String toping) {
-    return toping + " " + cheese + " " + bread + " pizza";
-  }
+
 }
 
 
