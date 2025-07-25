@@ -1,21 +1,20 @@
 public class Main {
   public static void main(String[] args) {
 
-    System.out.println(add(3, 5));
-    System.out.println(add(3, 5, 2));
-    System.out.println(add(3, 5, 2, 4));
+    System.out.println(bakePizza("flat bread"));
+    System.out.println(bakePizza("flat bread", "mozzarella"));
+    System.out.println(bakePizza("flat bread", "mozzarella", "pepperonni"));
 
   }
-
-  static double add(double a, double b) {
-    return a + b;
+  static String bakePizza(String bread) {
+    return bread + " pizza";
   }
-
-  static double add(double a, double b, double c) {
-    return a + b + c;
+  static String bakePizza(String bread, String cheese) {
+    return cheese + " " + bread + " pizza";
   }
-
-  static double add(double a, double b, double c, double d) {
-    return a + b + c + d;
+  static String bakePizza(String bread, String cheese, String toping) {
+    return toping + " " + cheese + " " + bread + " pizza";
   }
 }
+
+
