@@ -4,14 +4,14 @@ public class Main {
     public static void main(String[] args) {
       Scanner in = new Scanner(System.in);
 
-      int[] numbers = {1, 2, 4, 5, 2, 5, 0};
+      String[] fruits = {"apple", "orange", "banana"};
 
       System.out.print("Enter the element: ");
-      int target = in.nextInt();
+      String target = in.nextLine();
       boolean isFound = false;
 
-      for (int i = 0; i < numbers.length; i++) {
-        if (target == numbers[i]) {
+      for (int i = 0; i < fruits.length; i++) {
+        if (fruits[i].equals(target)) {
           System.out.printf("Element found at index: %d\n", i);
           isFound = true;
           break;
