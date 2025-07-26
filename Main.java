@@ -1,27 +1,17 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-      Scanner in = new Scanner(System.in);
+      System.out.println(sum(1, 4, 5, 3, 5));
+    }
 
-      String[] fruits = {"apple", "orange", "banana"};
+    static int sum(int ...numbers) {
+      int sum = 0;
 
-      System.out.print("Enter the element: ");
-      String target = in.nextLine();
-      boolean isFound = false;
-
-      for (int i = 0; i < fruits.length; i++) {
-        if (fruits[i].equals(target)) {
-          System.out.printf("Element found at index: %d\n", i);
-          isFound = true;
-          break;
-        } 
+      for (int number : numbers) {
+        sum += number;
       }
 
-      if (!isFound) {
-        System.out.println("Element not found in the array");
-      }
-      in.close();
+      return sum;
+
     }
 }
 
