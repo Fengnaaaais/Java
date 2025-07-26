@@ -1,75 +1,45 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
-    String[] questions = {
-      "What is the main function of a router?",
-      "Which part of computer is considered the brain?",
-      "Which company created windows?",
-      "What year was Facebook launched?",
-      "What was the first programming language?"
-    };
-    String[][] options = {
-      {
-        "1. Storing files", 
-        "2. Encripting data", 
-        "3. Directing internet trafic", 
-        "4. Managing passwords"
-      },
-      {
-        "1. CPU", 
-        "2. Hard drive", 
-        "3. RAM", 
-        "4. GPU"
-      },
-      {
-        "1. Microsoft", 
-        "2. Meta", 
-        "3. Google", 
-        "4. Netflix"
-      },
-      {
-        "1. 2000", 
-        "2. 2004", 
-        "3. 2006", 
-        "4. 2008"
-      },
-      {
-        "1. COBOL", 
-        "2. C", 
-        "3. Fortrun", 
-        "4. Assembly"
-      }
-    };
-
-    int[] answers = {3, 1, 1, 2, 3};
-    int score = 0;
-    int guess;
-
     Scanner in = new Scanner(System.in);
+    Random random = new Random();
 
-    System.out.println("Welcome to the Java Quiz Game!");
+    String[] choices = {"rock", "paper", "scissors"};
+    String playerChoice;
+    String computerChoise;
+    String playAgain = "y";
 
-    for (int i = 0; i < questions.length; i++) {
-      System.out.println(questions[i]);
+    do {
+      System.out.print("Enter your move (rock, paper, scissors): ");
+      playerChoice = in.nextLine().toLowerCase();
 
-      for (String option : options[i]) {
-        System.out.println(option);
+      if (!playerChoice.equals("rock")
+          && !playerChoice.equals("paper")
+          && !playerChoice.equals("scissors")) {
+        System.out.println("Invalid choice");
+        continue;
       }
 
-      System.out.print("Enter your guess: ");
-      guess = in.nextInt();
-
-      if (guess == answers[i]) {
-        System.out.println("CORECT!");
-        score++;
+      computerChoise = choices[random.nextInt(3)];
+      System.out.printf("Computer choice %s\n", computerChoise);
+      if (playerChoice.equals(computerChoise)) {
+        System.out.println("It's a tie");
+      } else if (playerChoice.equals("rock") && computerChoise.equals("scissors")
+          || playerChoice.equals("paper") && computerChoise.equals("rock")
+          || playerChoice.equals("scissors") && computerChoise.equals("paper")) {
+        System.out.println("You win!");
+      } else {
+        System.out.println("You lose!");
       }
-      else {
-        System.out.println("WRONG!");
-      }
-    }
 
-    System.out.printf("Your final score: %d out of %d\n", score, questions.length);
+      System.out.print("Play again?(y/n): ");
+      playAgain = in.nextLine().toLowerCase();
+
+    } while (playAgain.equals("y"));
+    
+    System.out.println("Thanks for playing!");
 
     in.close();
   }
