@@ -1,19 +1,22 @@
-import mymath.MathUtils;
-
 public class Main {
     public static void main(String[] args) {
-      System.out.println(MathUtils.average(1, 4, 5, 3, 5));
+
+        String[][] groceries = {
+            {"apple", "banane", "orange"},
+            {"potato", "onion", "carrot"},
+            {"chicken", "pork", "beef"}
+        };
+
+        groceries[2][1] = "meat"; // replace pork -> meat [row index][element index]
+        
+        for (String[] foods : groceries) {
+            for (String food : foods) {
+                System.out.print(food + " ");
+            }
+            System.out.println();
+        }
+
     }
-
-//     static int sum(int ...numbers) {
-//       int sum = 0;
-
-//       for (int number : numbers) {
-//         sum += number;
-//       }
-
-//       return sum;
-
-//     }
 }
+
 
