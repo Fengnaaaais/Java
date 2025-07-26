@@ -2,6 +2,20 @@ package mymath;
 
 public class MathUtils {
 
+    public static double average(int... numbers) {
+        double sum = 0;
+
+        if (numbers.length == 0) {
+            return 0;
+        }
+
+        for (int number : numbers) {
+            sum += number;
+        }
+
+        return sum / numbers.length;
+    }
+
     public static double getHypotenuse(double a, double b) {
         return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     }
