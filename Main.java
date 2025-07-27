@@ -4,43 +4,91 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-    Random random = new Random();
+    int balance = 100;
+    int bet;
+    int payout;
+    String[] row;
 
-    String[] choices = {"rock", "paper", "scissors"};
-    String playerChoice;
-    String computerChoise;
-    String playAgain = "y";
+    System.out.println("***********************");
+    System.out.println(" Welcome to Java Slots ");
+    System.out.println(" Symbols: 🍒 🍉 🍋 🔔 🌟 ");
+    System.out.println("***********************");
 
-    do {
-      System.out.print("Enter your move (rock, paper, scissors): ");
-      playerChoice = in.nextLine().toLowerCase();
-
-      if (!playerChoice.equals("rock")
-          && !playerChoice.equals("paper")
-          && !playerChoice.equals("scissors")) {
-        System.out.println("Invalid choice");
+    while (balance > 0) {
+      System.out.printf("Current balance: $%d\n", balance);
+      System.out.print("Place your bet amount: ");
+      bet = in.nextInt();
+      if (bet > balance) {
+        System.out.println("INSUFFICIENT FUNDS!");
         continue;
+      } else if (bet <= 0) {
+        System.out.println("Bet must be greather than 0!");
+        continue;
+      } else {
+        balance -= bet;
       }
 
-      computerChoise = choices[random.nextInt(3)];
-      System.out.printf("Computer choice %s\n", computerChoise);
-      if (playerChoice.equals(computerChoise)) {
-        System.out.println("It's a tie");
-      } else if (playerChoice.equals("rock") && computerChoise.equals("scissors")
-          || playerChoice.equals("paper") && computerChoise.equals("rock")
-          || playerChoice.equals("scissors") && computerChoise.equals("paper")) {
-        System.out.println("You win!");
+      System.out.println("Spinning...");
+      row = spinRow();
+      printRow(row);
+      payout = getPayout(row, bet);
+      if (payout > 0) {
+        System.out.printf("You won $%d\n", payout);
+        balance += payout;
       } else {
         System.out.println("You lose!");
       }
-
-      System.out.print("Play again?(y/n): ");
-      playAgain = in.nextLine().toLowerCase();
-
-    } while (playAgain.equals("y"));
-    
-    System.out.println("Thanks for playing!");
+    }
 
     in.close();
+  }
+
+  static String[] spinRow() {
+    String[] symbols = {"🍒", "🍉", "🍋", "🔔", "🌟"};
+    String[] row = new String[3];
+    Random random = new Random();
+
+    for (int i = 0; i < row.length; i++) {
+      row[i] = symbols[random.nextInt(symbols.length)];
+    }
+    return row;
+  }
+
+  static void printRow(String[] row) {
+    System.out.println(" " + String.join(" | ", row));
+  }
+
+  static int getPayout(String[] row, int bet) {
+    if (row[0].equals(row[1]) && row[1].equals(row[2])) {
+      return switch(row[0]) {
+        case "🍒" -> bet * 3;
+        case "🍉" -> bet * 4;
+        case "🍋" -> bet * 5;
+        case "🔔" -> bet * 10;
+        case "🌟" -> bet * 20;
+          default -> 0;
+      };
+    }
+    else if (row[0].equals(row[1]) || row[0].equals(row[2])) {
+      return switch(row[0]) {
+        case "🍒" -> bet * 2;
+        case "🍉" -> bet * 3;
+        case "🍋" -> bet * 4;
+        case "🔔" -> bet * 5;
+        case "🌟" -> bet * 10;
+          default -> 0;
+      };
+    }
+    else if (row[1].equals(row[2])) {
+      return switch(row[1]) {
+        case "🍒" -> bet * 2;
+        case "🍉" -> bet * 3;
+        case "🍋" -> bet * 4;
+        case "🔔" -> bet * 5;
+        case "🌟" -> bet * 10;
+          default -> 0;
+      };
+    }
+    return 0;
   }
 }
