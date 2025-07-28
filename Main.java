@@ -1,13 +1,13 @@
 public class Main {
   public static void main(String[] args) {
-    Rabbit rabbit = new Rabbit();
-    Hawk hawk = new Hawk();
-    Fish fish  = new Fish();
+    Bike bike = new Bike();
+    Boat boat = new Boat();
+    Car car = new Car();
 
-    rabbit.flee();
-    hawk.hunt();
+    Vehicle[] vehicles = {bike, boat, car};
 
-    fish.flee();
-    fish.hunt();
+    for (Vehicle vehicle : vehicles) {
+      vehicle.go();
+    }
   }
 }
