@@ -1,12 +1,17 @@
 public class Main {
   public static void main(String[] args) {
-    Friend friend1 = new Friend("Spongebob");
-    Friend friend2 = new Friend("Patrick");
-    Friend friend3 = new Friend("Squidward");
-    Friend friend4 = new Friend("Sandy");
 
-    System.out.println(friend1.name);
-    Friend.showFriends();
+    Person pshon = new Person("Alecsandr", "Gleb");
+    Student pshon_student = new Student(
+      pshon.first_name, 
+      pshon.last_name, 
+      4.5
+    );
+    Fermer fermer = new Fermer("Bob", "Last", 34);
+    fermer.showInfo();
+
+    System.out.println(pshon_student.getName());
+    System.out.println(pshon_student.gpa);
   }
 }
 
