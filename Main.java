@@ -1,20 +1,24 @@
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
-    ArrayList<String> fruits = new ArrayList<>();
+    Scanner in = new Scanner(System.in);
+    ArrayList<String> foods = new ArrayList<>();
 
-    fruits.add("Apple");
-    fruits.add("Orange");
-    fruits.add("Banana");
+    int numOfFoods;
 
-    // fruits.remove(2); // - remove Banana
-    // fruits.set(1, "Pineaple"); // - set Orange - Pineaple
-    // System.out.println(fruits.get(0)); // get element by index
-    // System.out.println(fruits.size());
+    System.out.printf("How many foods would you like: ");
+    numOfFoods = in.nextInt();
+    in.nextLine();
 
-    Collections.sort(fruits);
-    System.out.println(fruits);
+    for (int i = 1; i <= numOfFoods; i++) {
+      System.out.printf("Enter food #%d: ", i);
+      foods.add(in.nextLine());
+    }
+
+    System.out.println(foods);
+
+    in.close();
   }
 }
