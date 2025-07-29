@@ -1,24 +1,18 @@
-import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+
   public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-    ArrayList<String> foods = new ArrayList<>();
 
-    int numOfFoods;
-
-    System.out.printf("How many foods would you like: ");
-    numOfFoods = in.nextInt();
-    in.nextLine();
-
-    for (int i = 1; i <= numOfFoods; i++) {
-      System.out.printf("Enter food #%d: ", i);
-      foods.add(in.nextLine());
+    try (Scanner in = new Scanner(System.in)) {
+      System.out.print("Enter a number: ");
+      int number = in.nextInt();
+      System.out.println(number);
+    } catch (InputMismatchException e) {
+      System.out.println("That wasn't a number!");
+    } catch (Exception e) {
+      System.out.println(e);
     }
-
-    System.out.println(foods);
-
-    in.close();
   }
 }
