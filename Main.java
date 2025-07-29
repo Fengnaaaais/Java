@@ -1,18 +1,23 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
 
   public static void main(String[] args) {
+    String filePath = "text.txt";
+    String fileContent =
+        """
+        Pshon negr
+        Pshon nerg
+        Pshon ergn
+        Pshon rgne
+        """;
 
-    try (Scanner in = new Scanner(System.in)) {
-      System.out.print("Enter a number: ");
-      int number = in.nextInt();
-      System.out.println(number);
-    } catch (InputMismatchException e) {
-      System.out.println("That wasn't a number!");
-    } catch (Exception e) {
-      System.out.println(e);
+    try (FileWriter writer = new FileWriter(filePath)) {
+      writer.write(fileContent);
+      System.out.println("File has been succesful writed");
+    } catch (IOException e) {
+      System.out.println("Could not write file" + e.getMessage());
     }
   }
 }
